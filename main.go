@@ -1,21 +1,20 @@
 package main
 
-import "fmt"
+// pc[i] is the population count of i.
 
-func main() {
-	if x := f(); x == 0 {
-		fmt.Println(x)
-	} else if y := g(x); x == y {
-		fmt.Println(x, y)
-	} else {
-		fmt.Println(x, y)
+func init() {
+	for i := range pc {
+		pc[i] = pc[i/2] + byte(i&1)
 	}
-	//fmt.Println(x, y) // compile error: x and y are not visible here
+}
+func main() {
 
 }
-func f() int {
-	return 1
-}
-func g(x int) int {
-	return 1 + x
-}
+
+// pc[i] is the population count of i.
+var pc [256]byte = func() (pc [256]byte) {
+	for i := range pc {
+		pc[i] = pc[i/2] + byte(i&1)
+	}
+	return
+}()
